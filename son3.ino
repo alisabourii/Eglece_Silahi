@@ -19,22 +19,27 @@ void setup() {
 
   pinMode(trig, OUTPUT);
   pinMode(echo, INPUT);
+  pinMode(7, INPUT_PULLUP);
 }
 
 void loop() {
-   show();
+  show();
+
+
   int controller = map(analogRead(A0), 0,1023,0,180);
   srv.write(controller);
+
+
   if(digitalRead(7) == 0){
-    ates();
+    digitalWrite(10,1);
+    Serial.println("ates");
+  }
+  else{
+      digitalWrite(10,0);
   }
 }
 
-void ates(){
-  
-  lcd.clear();
-  lcd.print("Ates");
-}
+
 
 void show(){
   lcd.clear();
